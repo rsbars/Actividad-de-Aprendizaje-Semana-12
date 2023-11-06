@@ -1,0 +1,69 @@
+public class Hora {
+    private int horas;
+    private int minutos;
+    private int segundos;
+
+    public Hora(int horas, int minutos, int segundos) {
+        this.horas = horas;
+        this.minutos = minutos;
+        this.segundos = segundos;
+    }
+
+    public int getHoras() {
+        return horas;
+    }
+
+    public int getMinutos() {
+        return minutos;
+    }
+
+    public int getSegundos() {
+        return segundos;
+    }
+
+    public void avanzar(int horas, int minutos, int segundos) {
+        this.horas += horas;
+        this.minutos += minutos;
+        this.segundos += segundos;
+
+        // Ajustar los minutos y segundos si superan 60
+        if (this.segundos >= 60) {
+            this.minutos += this.segundos / 60;
+            this.segundos = this.segundos % 60;
+        }
+        if (this.minutos >= 60) {
+            this.horas += this.minutos / 60;
+            this.minutos = this.minutos % 60;
+        }
+
+        // Asegurarse de que las horas no superen 24
+        this.horas = this.horas % 24;
+    }
+
+    public void ponerACero() {
+        this.horas = 0;
+        this.minutos = 0;
+        this.segundos = 0;
+    }
+
+    public void visualizar() {
+        System.out.printf("%02d:%02d:%02d%n", horas, minutos, segundos);
+    }
+
+    public static void main(String[] args) {
+        Hora hora1 = new Hora(10, 30, 45);
+
+        System.out.println("Hora 1: ");
+        hora1.visualizar();
+
+        hora1.avanzar(1, 15, 20);
+
+        System.out.println("Hora 1 después de avanzar: ");
+        hora1.visualizar();
+
+        hora1.ponerACero();
+
+        System.out.println("Hora 1 después de poner a cero: ");
+        hora1.visualizar();
+    }
+}
