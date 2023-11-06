@@ -1,0 +1,86 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class LAN {
+    protected String nombre;
+    protected int velocidadTransmision;
+    protected int tamanoMaximoPaquete;
+    protected List<Nodo> nodos;
+
+    public LAN(String nombre, int velocidadTransmision, int tamanoMaximoPaquete) {
+        this.nombre = nombre;
+        this.velocidadTransmision = velocidadTransmision;
+        this.tamanoMaximoPaquete = tamanoMaximoPaquete;
+        this.nodos = new ArrayList<>();
+    }
+
+    public void agregarNodo(Nodo nodo) {
+        nodos.add(nodo);
+    }
+
+    public void quitarNodo(Nodo nodo) {
+        nodos.remove(nodo);
+    }
+
+    public void configurarTopologia(String topologia) {
+        // Implementar la configuración de la topología (estrella, anillo, bus, hub).
+    }
+
+    public void enviarPaquete(Nodo origen, Nodo destino, String mensaje) {
+        // Implementar el envío de paquetes entre nodos.
+    }
+
+    public void difundirPaquete(Nodo origen, String mensaje) {
+        // Implementar la difusión de paquetes desde un nodo a todos los demás de la red.
+    }
+
+    public double obtenerTiempoMedioPaquete() {
+        // Implementar el cálculo del tiempo medio que emplea un paquete.
+        return 0.0;
+    }
+
+    public void listarNodos() {
+        System.out.println("Nodos de la red " + nombre + ":");
+        for (Nodo nodo : nodos) {
+            System.out.println("- " + nodo.getNombre());
+        }
+    }
+}
+
+class Nodo {
+    private String nombre;
+    private String tipo;
+
+    public Nodo(String nombre, String tipo) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+}
+
+// Subclases que representan las diferentes topologías (Estrella, Anillo, Bus, Hub) pueden ser implementadas aquí.
+
+public class Main {
+    public static void main(String[] args) {
+        LAN redLAN = new LAN("MiRedLAN", 1000, 1500);
+
+        Nodo nodo1 = new Nodo("Nodo1", "Computadora");
+        Nodo nodo2 = new Nodo("Nodo2", "Estación de trabajo");
+        Nodo nodo3 = new Nodo("Nodo3", "Máquina FAX");
+
+        redLAN.agregarNodo(nodo1);
+        redLAN.agregarNodo(nodo2);
+        redLAN.agregarNodo(nodo3);
+
+        redLAN.listarNodos();
+
+        // Implementar las operaciones de la LAN, configuración de topología, envío de paquetes, estadísticas, etc.
+    }
+}
