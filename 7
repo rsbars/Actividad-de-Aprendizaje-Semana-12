@@ -1,0 +1,134 @@
+import java.util.ArrayList;
+
+class Empleado {
+    private String nombre;
+    private int edad;
+    private double salarioBase;
+
+    public Empleado(String nombre, int edad, double salarioBase) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.salarioBase = salarioBase;
+    }
+
+    public double calcularSalario() {
+        return salarioBase;
+    }
+
+    public void darDeAlta() {
+        // Lógica para dar de alta al empleado.
+    }
+
+    public void jubilacion() {
+        // Lógica para jubilar al empleado.
+    }
+
+    public void aumentarSalario(double porcentaje) {
+        salarioBase += salarioBase * (porcentaje / 100);
+    }
+
+    public double calcularPrima() {
+        return 0.0;
+    }
+
+    @Override
+    public String toString() {
+        return "Empleado: " + nombre;
+    }
+}
+
+class Supervisor extends Empleado {
+    private ArrayList<Empleado> subordinados;
+
+    public Supervisor(String nombre, int edad, double salarioBase) {
+        super(nombre, edad, salarioBase);
+        subordinados = new ArrayList<>();
+    }
+
+    public void agregarSubordinado(Empleado empleado) {
+        subordinados.add(empleado);
+    }
+
+    public void quitarSubordinado(Empleado empleado) {
+        subordinados.remove(empleado);
+    }
+
+    @Override
+    public double calcularSalario() {
+        double salarioTotal = salarioBase;
+        for (Empleado subordinado : subordinados) {
+            salarioTotal += subordinado.calcularSalario();
+        }
+        return salarioTotal;
+    }
+
+    public void promocion() {
+        // Lógica para promocionar al supervisor.
+    }
+
+    @Override
+    public String toString() {
+        return "Supervisor: " + super.toString();
+    }
+}
+
+class RecursosHumanos extends Empleado {
+    private boolean accesoCompleto;
+
+    public RecursosHumanos(String nombre, int edad, double salarioBase) {
+        super(nombre, edad, salarioBase);
+        accesoCompleto = false;
+    }
+
+    public void configurarAccesoCompleto(boolean acceso) {
+        accesoCompleto = acceso;
+    }
+
+    public void despedir(Empleado empleado) {
+        // Lógica para despedir a un empleado.
+    }
+
+    public void promocion() {
+        // Lógica para promocionar a un empleado.
+    }
+
+    @Override
+    public String toString() {
+        return "Recursos Humanos: " + super.toString();
+    }
+}
+
+class SUNAT extends Empleado {
+    private boolean accesoCompleto;
+
+    public SUNAT(String nombre, int edad, double salarioBase) {
+        super(nombre, edad, salarioBase);
+        accesoCompleto = false;
+    }
+
+    public void configurarAccesoCompleto(boolean acceso) {
+        accesoCompleto = acceso;
+    }
+
+    @Override
+    public String toString() {
+        return "SUNAT: " + super.toString();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Empleado empleado1 = new Empleado("Juan", 30, 2000);
+        Supervisor supervisor1 = new Supervisor("Ana", 35, 3000);
+        RecursosHumanos rrhh1 = new RecursosHumanos("Carlos", 40, 3500);
+        SUNAT sunat1 = new SUNAT("Eva", 28, 2500);
+
+        supervisor1.agregarSubordinado(empleado1);
+
+        System.out.println(empleado1);
+        System.out.println("Salario de empleado1: " + empleado1.calcularSalario());
+
+        System.out.println(supervisor1);
+        System.out.println("Salario de supervisor1: " + supervisor1.calcularSalario());
+    }
+}
