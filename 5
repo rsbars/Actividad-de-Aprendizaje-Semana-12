@@ -1,0 +1,46 @@
+public class Cadena {
+    private int longitud;
+    private String cadena;
+
+    public Cadena(String cadena) {
+        this.cadena = cadena;
+        this.longitud = cadena.length();
+    }
+
+    public int getLongitud() {
+        return longitud;
+    }
+
+    public String getCadena() {
+        return cadena;
+    }
+
+    public char caracter(int i) {
+        if (i >= 0 && i < longitud) {
+            return cadena.charAt(i);
+        } else {
+            return '\u0000'; // Devuelve un carácter nulo si i está fuera del rango
+        }
+    }
+
+    public void visualizar() {
+        System.out.println("Cadena: " + cadena);
+        System.out.println("Longitud: " + longitud);
+    }
+
+    public static void main(String[] args) {
+        Cadena cadena1 = new Cadena("Hola, mundo!");
+
+        System.out.println("Cadena 1: ");
+        cadena1.visualizar();
+
+        int indice = 6; // Índice para obtener un carácter
+        char caracter = cadena1.caracter(indice);
+
+        if (caracter != '\u0000') {
+            System.out.println("Carácter en el índice " + indice + ": " + caracter);
+        } else {
+            System.out.println("El índice está fuera del rango de la cadena.");
+        }
+    }
+}
